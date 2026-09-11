@@ -5,46 +5,93 @@ import com.banking.app.Entity.User;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserRepository {
 
     // Data structure to store users
-    private Map<UUID, User> users = new HashMap<>();
+    private Set<User> users = new HashSet<>();
 
+    public void InitializeUser() {
 
+        User user1 = new User(
+                "Fatima",
+                "El Amrani",
+                "fatima.amrani@gmail.com",
+                "1234",
+                "0612345678",
+                "client",
+                12500.50,
+                "MA001"
+        );
 
-        public void InitializeUser(){
-            // Generate UUID keys and attach them directly to both the user and the map
-            UUID id1 = UUID.randomUUID();
-            User user1 = new User("Fatima", "El Amrani", "fatima.amrani@gmail.com", "0612345678", "client", 12500.50, id1.toString());
+        User user2 = new User(
+                "Oussama",
+                "Ait Youss",
+                "oussama@gmail.com",
+                "1234",
+                "0611223344",
+                "client",
+                40000.39,
+                "MA002"
+        );
 
-            UUID id2 = UUID.randomUUID();
-            User user2 = new User("Oussama", "Ait Youss", "oussama@gmail.com", "0611223344", "client", 40000.39, id2.toString());
+        User user3 = new User(
+                "Yassine",
+                "Bennani",
+                "yassine.bennani@yahoo.com",
+                "1234",
+                "0698765432",
+                "client",
+                185400.00,
+                "MA003"
+        );
 
-            UUID id3 = UUID.randomUUID();
-            User user3 = new User("Yassine", "Bennani", "yassine.bennani@yahoo.com", "0698765432", "client", 185400.00, id3.toString());
+        User user4 = new User(
+                "Salma",
+                "Mansouri",
+                "salma.mansouri@outlook.com",
+                "1234",
+                "0655443322",
+                "client",
+                0.0,
+                "MA004"
+        );
 
-            UUID id4 = UUID.randomUUID();
-            User user4 = new User("Salma", "Mansouri", "salma.mansouri@outlook.com", "0655443322", "client", 0.0, id4.toString());
+        User user5 = new User(
+                "Mehdi",
+                "Alaoui",
+                "mehdi.alaoui@bankcorp.ma",
+                "1234",
+                "0677889900",
+                "admin",
+                50000.00,
+                "MA005"
+        );
 
-            UUID id5 = UUID.randomUUID();
-            User user5 = new User("Mehdi", "Alaoui", "mehdi.alaoui@bankcorp.ma", "0677889900", "admin", 50000.00, id5.toString());
-
-            // Put users in the map using their actual UUID
-            users.put(id1, user1);
-            users.put(id2, user2);
-            users.put(id3, user3);
-            users.put(id4, user4);
-            users.put(id5, user5);
-        }
-
-
-        //find all users
-
-        public void findAll(){
-            System.out.println(users);;
+        users.add(user1);
+        users.add(user2);
+        users.add(user3);
+        users.add(user4);
+        users.add(user5);
     }
 
+    public Set<User> findAll() {
+        return users;
+    }
 
-
+        //login method
+        public User Login(String email,String password) throws NullPointerException{
+            return users.stream()
+                    .filter(user -> user.getEmail().equals(email) && user.getPassword().equals(password))
+                    .findFirst()
+                    .orElse(null);
+        }
+        public User findByEmail(String email){
+            return users.stream()
+                    .filter(r->r.getEmail().equals(email))
+                    .findFirst()
+                    .orElse(null);
+        }
 }
