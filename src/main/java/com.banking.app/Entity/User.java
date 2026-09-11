@@ -1,24 +1,28 @@
 package com.banking.app.Entity;
 
 
+import java.util.UUID;
 
 public class User {
 
-    private int id;
+    private UUID id;
     private String first_Name;
     private String last_Name;
     private String email;
-    private String contact_Name;
+    private String password;
+    private String contact_Number;
     private String role;
     private double balance;
     private String account_nbr;
 
 
-    public User(String first_Name,String last_Name,String Email,String contact_Name,String role,double balance,String account_nbr){
+    public User(String first_Name,String last_Name,String email,String password,String contact_Number,String role,double balance,String account_nbr){
+        this.id = UUID.randomUUID();
         this.first_Name = first_Name;
         this.last_Name = last_Name;
         this.email = email;
-        this.contact_Name = contact_Name;
+        this.password = password;
+        this.contact_Number = contact_Number;
         this.role = role;
         this.balance = balance;
         this.account_nbr = account_nbr;
@@ -41,9 +45,9 @@ public class User {
     }
 
     public String getContact_Name() {
-        return contact_Name;
+        return contact_Number;
     }
-    public int getId(){
+    public UUID getId(){
         return id;
     }
 
@@ -58,6 +62,9 @@ public class User {
     public String getAccount_nbr() {
         return account_nbr;
     }
+    public String getPassword() {
+        return password;
+    }
 
     //setters
 
@@ -68,7 +75,10 @@ public class User {
     public void setLast_Name(String last_Name) {
         this.last_Name = last_Name;
     }
-    public void setId(int id){
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setId(UUID id){
         this.id = id;
     }
 
@@ -77,7 +87,7 @@ public class User {
     }
 
     public void setContact_Name(String contact_Name) {
-        this.contact_Name = contact_Name;
+        this.contact_Number = contact_Name;
     }
 
     public void setRole(String role) {
@@ -90,5 +100,25 @@ public class User {
 
     public void setAccount_nbr(String account_nbr) {
         this.account_nbr = account_nbr;
+    }
+    public void getFullName(){
+        System.out.println(first_Name+last_Name);
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "User :" + "\n"+
+                "id=" + id + "\n" +
+                ", first_Name='" + first_Name + '\'' + "\n"+
+                ", last_Name='" + last_Name + '\'' + "\n"
+                ;
+//                ", email='" + email + '\'' + "\n"+
+//                ", password='" + password + '\'' + "\n"+
+//                ", contact_Number='" + contact_Number + '\'' + "\n"+
+//                ", role='" + role + '\'' + "\n"+
+//                ", balance=" + balance +"\n"+
+//                ", account_nbr='" + account_nbr + '\''
     }
 }
